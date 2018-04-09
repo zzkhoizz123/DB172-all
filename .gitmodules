@@ -1,0 +1,6 @@
+[submodule "client"]
+	path = client
+	url = https://github.com/zzkhoizz123/DB172.git
+[submodule "api"]
+	path = api
+	url = https://github.com/nganhkhoa/DB172-api.git
