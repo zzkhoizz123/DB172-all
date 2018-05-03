@@ -2,62 +2,46 @@
 -- ****************** SqlDBM: MySQL ******************;
 -- ***************************************************;
 
-DROP TABLE IF EXISTS `db_online_course`.`Submission`;
+DROP DATABASE IF EXISTS `db_online_course`;
 
+DROP TABLE IF EXISTS `db_online_course`.`Submission`;
 
 DROP TABLE IF EXISTS `db_online_course`.`Content`;
 
-
 DROP TABLE IF EXISTS `db_online_course`.`Exercise`;
-
 
 DROP TABLE IF EXISTS `db_online_course`.`Comment`;
 
-
 DROP TABLE IF EXISTS `db_online_course`.`Attend`;
-
 
 DROP TABLE IF EXISTS `db_online_course`.`Lesson`;
 
-
 DROP TABLE IF EXISTS `db_online_course`.`CourseVote`;
-
 
 DROP TABLE IF EXISTS `db_online_course`.`Collection_Course`;
 
-
 DROP TABLE IF EXISTS `db_online_course`.`Class`;
-
 
 DROP TABLE IF EXISTS `db_online_course`.`Course_Tag`;
 
-
 DROP TABLE IF EXISTS `db_online_course`.`TeacherVote`;
-
 
 DROP TABLE IF EXISTS `db_online_course`.`Work_Study`;
 
-
 DROP TABLE IF EXISTS `db_online_course`.`Collection`;
-
 
 DROP TABLE IF EXISTS `db_online_course`.`Course`;
 
-
 DROP TABLE IF EXISTS `db_online_course`.`Tag`;
 
-
 DROP TABLE IF EXISTS `db_online_course`.`Group`;
-
 
 DROP TABLE IF EXISTS `db_online_course`.`User`;
 
 
-
-DROP DATABASE IF EXISTS `db_online_course`;
+-- ************************************** CREATE
 
 CREATE DATABASE `db_online_course`;
-
 
 
 -- ************************************** `db_online_course`.`Tag`
@@ -65,7 +49,7 @@ CREATE DATABASE `db_online_course`;
 CREATE TABLE `db_online_course`.`Tag`
 (
  `Tag_ID`       BIGINT AUTO_INCREMENT ,
- `Name`         VARCHAR(50) NOT NULL ,
+ `Name`         VARCHAR(50) NOT NULL UNIQUE ,
  `CourseNumber` BIGINT NOT NULL ,
 
 PRIMARY KEY (`Tag_ID`)
@@ -81,7 +65,7 @@ CREATE TABLE `db_online_course`.`Group`
  `Group_ID`    BIGINT AUTO_INCREMENT ,
  `Name`        VARCHAR(50) NOT NULL ,
  `Phone`       VARCHAR(20) NOT NULL ,
- `Email`       VARCHAR(50) NOT NULL ,
+ `Email`       VARCHAR(50) NOT NULL UNIQUE ,
  `Country`     VARCHAR(50) NOT NULL ,
  `City`        VARCHAR(50) NOT NULL ,
  `Established` DATE ,
@@ -100,14 +84,15 @@ PRIMARY KEY (`Group_ID`)
 CREATE TABLE `db_online_course`.`User`
 (
  `User_ID`       BIGINT AUTO_INCREMENT ,
- `Username`      VARCHAR(50) NOT NULL ,
+ `Username`      VARCHAR(50) NOT NULL UNIQUE ,
  `Password`      VARCHAR(150) NOT NULL ,
- `Name`          VARCHAR(50) NOT NULL ,
+ `LastPwdUpdate` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP() ,
+ `Name`          VARCHAR(50) ,
  `DoB`           DATETIME ,
- `Email`         VARCHAR(50) ,
+ `Email`         VARCHAR(50) NOT NULL UNIQUE ,
  `FacebookToken` VARCHAR(200) ,
- `CreateDate`    DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP(),
- `isTeacher`     BIT DEFAULT 0,
+ `CreateDate`    DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP() ,
+ `isTeacher`     INT DEFAULT 0,
  `Star`          SMALLINT DEFAULT 0,
 
 PRIMARY KEY (`User_ID`)
@@ -184,6 +169,7 @@ CREATE TABLE `db_online_course`.`Course`
  `CreateDate`  DATETIME DEFAULT CURRENT_TIMESTAMP() ,
  `Teacher_ID`  BIGINT NOT NULL ,
  `OpenedClass` BIGINT DEFAULT 0 ,
+ `ImageLink`   VARCHAR(100) DEFAULT "http://www.raisedeyebrow.com/sites/www.raisedeyebrow.com/files/blog/2012/01/fff.png" ,
 
 PRIMARY KEY (`Course_ID`),
 KEY `fkIdx_678` (`Teacher_ID`),
@@ -380,8 +366,8 @@ CREATE TABLE `db_online_course`.`Comment`
  `Course_ID`        BIGINT NOT NULL ,
  `Class_ID`         BIGINT NOT NULL ,
  `Create`           DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP() ,
- `Inappropriate`    BIT NOT NULL DEFAULT 0 ,
- `Deleted`          BIT NOT NULL DEFAULT 0 ,
+ `Inappropriate`    INT NOT NULL DEFAULT 0 ,
+ `Deleted`          INT NOT NULL DEFAULT 0 ,
  `ParrentThread_ID` BIGINT COMMENT 'A reply to a thread' ,
  `User_ID`          BIGINT NOT NULL ,
  `ParrentLesson_ID` BIGINT ,
