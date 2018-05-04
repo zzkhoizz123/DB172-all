@@ -169,7 +169,7 @@ CREATE TABLE `db_online_course`.`Course`
  `CreateDate`  DATETIME DEFAULT CURRENT_TIMESTAMP() ,
  `Teacher_ID`  BIGINT NOT NULL ,
  `OpenedClass` BIGINT DEFAULT 0 ,
- `ImageLink`   VARCHAR(100) DEFAULT "http://www.raisedeyebrow.com/sites/www.raisedeyebrow.com/files/blog/2012/01/fff.png" ,
+ `ImageLink`   VARCHAR(128) DEFAULT "http://www.raisedeyebrow.com/sites/www.raisedeyebrow.com/files/blog/2012/01/fff.png" ,
 
 PRIMARY KEY (`Course_ID`),
 KEY `fkIdx_678` (`Teacher_ID`),
