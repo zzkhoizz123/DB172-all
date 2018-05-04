@@ -408,3 +408,7 @@ __pycache__/
 
 
 # End of https://www.gitignore.io/api/vim,node,sublimetext,visualstudio,visualstudiocode
+
+
+
+**/draft/
