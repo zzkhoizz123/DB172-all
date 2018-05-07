@@ -88,8 +88,11 @@ CREATE TABLE `db_online_course`.`User`
  `Password`      VARCHAR(150) NOT NULL ,
  `LastPwdUpdate` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP() ,
  `Name`          VARCHAR(50) ,
+ `Female`        INT ,   
  `DoB`           DATETIME ,
  `Email`         VARCHAR(50) NOT NULL UNIQUE ,
+ `Image`         VARCHAR(200) DEFAULT
+      "https://i1.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?resize=256%2C256&quality=100",
  `FacebookToken` VARCHAR(200) ,
  `CreateDate`    DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP() ,
  `isTeacher`     INT DEFAULT 0,
@@ -406,7 +409,3 @@ CONSTRAINT `FK_601` FOREIGN KEY `fkIdx_601` (`Student_ID`) REFERENCES `db_online
 KEY `fkIdx_605` (`Exercise_ID`, `Lesson_ID`, `Class_ID`, `Course_ID`),
 CONSTRAINT `FK_605` FOREIGN KEY `fkIdx_605` (`Exercise_ID`, `Lesson_ID`, `Class_ID`, `Course_ID`) REFERENCES `db_online_course`.`Exercise` (`Exercise_ID`, `Lesson_ID`, `Class_ID`, `Course_ID`)
 );
-
-
-
-

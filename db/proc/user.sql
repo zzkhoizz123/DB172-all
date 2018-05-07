@@ -9,13 +9,13 @@ END;//
 DROP PROCEDURE IF EXISTS `ValidatePwdbyName`//
 CREATE PROCEDURE `ValidatePwdbyName`(IN uname CHAR(20), IN pwd CHAR(64))
 BEGIN
-      SELECT User_ID AS ID FROM User WHERE Username LIKE uname AND Password LIKE pwd;
+      SELECT User_ID AS ID, Image FROM User WHERE Username LIKE uname AND Password LIKE pwd;
 END;//
 
 DROP PROCEDURE IF EXISTS `GetUserInfo`//
 CREATE PROCEDURE `GetUserInfo`(IN id INT)
 BEGIN
-      SELECT Username, Name, DoB, Email, FacebookToken, CreateDate FROM User WHERE User_ID=id;
+      SELECT Username, Name, Female, DoB, Email, FacebookToken, isTeacher, Image, CreateDate FROM User WHERE User_ID=id;
 END;//
 
 DROP PROCEDURE IF EXISTS `ResetPwd`//
