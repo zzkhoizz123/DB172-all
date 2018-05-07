@@ -226,7 +226,7 @@ CREATE TABLE `db_online_course`.`Class`
  `OpenDate`       DATETIME ,
  `EndDate`        DATETIME ,
  `Teacher_ID`     BIGINT NOT NULL ,
- `NoLesson`       SMALLINT NOT NULL ,
+ `NoLesson`       SMALLINT NOT NULL DEFAULT 0,
 
 PRIMARY KEY (`Course_ID`, `Class_ID`),
 KEY `fkIdx_422` (`Course_ID`),
@@ -288,7 +288,7 @@ CREATE TABLE `db_online_course`.`Lesson`
  `Course_ID`   BIGINT NOT NULL ,
  `Class_ID`    BIGINT NOT NULL ,
  `Name`        VARCHAR(50) NOT NULL ,
- `Description` TEXT NOT NULL ,
+ `Description` TEXT ,
  `Create`      DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP() ,
  `LastUpdate`  DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP() ,
  `Teacher_ID`  BIGINT NOT NULL ,
