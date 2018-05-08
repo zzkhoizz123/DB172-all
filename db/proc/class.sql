@@ -11,7 +11,11 @@ BEGIN
            VALUES (Courseid,@Class_id+1,Teacher_ID);
 
       # Trigger on OpenedClass to update new value
+
 END;//
+
+
+
 
 DROP PROCEDURE IF EXISTS `GetClass`//
 CREATE PROCEDURE `GetClass`(IN Course_id BIGINT, IN Class_id BIGINT)
