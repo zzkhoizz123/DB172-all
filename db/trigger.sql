@@ -4,7 +4,7 @@ CREATE TRIGGER UpdateOpenedClass AFTER INSERT ON Class
 FOR EACH ROW
 BEGIN
       
-      UPDATE Course SET OpenedClass = NEW.Class_ID
+      UPDATE Course SET OpenedClass = NEW.Class_ID , UpdateDate = CURRENT_TIMESTAMP()
       WHERE Course_ID = NEW.Course_ID;
       
 END;//
@@ -28,5 +28,7 @@ BEGIN
             AND Lesson_ID = NEW.Lesson_ID;
       
 END;//
+
+
 
 DELIMITER ;
